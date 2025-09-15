@@ -1,0 +1,453 @@
+/* ========================== */
+/* 🎨 Paleta de cores global */
+/* ========================== */
+:root {
+  --rosa-claro: #ffb6d5;
+  --rosa-escuro: #ff4d8a;
+  --preto: #0b0b0b;
+  --branco: #ffffff;
+  --cinza-suave: #f3f3f3;
+}
+
+/* ========================== */
+/* 🔄 Reset básico */
+/* ========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========================== */
+/* 🌍 Fonte global */
+/* - Essa é a "fonte principal" do site 
+   - Aqui está como 'Press Start 2P' (pixelada)
+   - Troque aqui se quiser letras mais redondas 
+     (ex: 'Quicksand', 'Poppins', 'Nunito') */
+/* ========================== */
+body {
+  font-family: 'Quicksand', 'Arial', sans-serif; /* Fonte redonda global */
+  background-color: var(--preto);
+  color: var(--branco);
+  overflow-x: hidden;
+}
+
+
+/* ========================== */
+/* 🌌 Fundo estrelado e planetas (JS joga os emojis aqui) */
+/* ========================== */
+.sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(to bottom, #0b0b0b, #1a0b1a);
+  overflow: hidden;
+}
+
+/* ========================== */
+/* 📌 Topbar (menu superior / abas) */
+/* ========================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--preto);
+  border-bottom: 2px solid var(--rosa-claro);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tab-btn {
+  background: var(--rosa-claro);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--preto);
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background: var(--rosa-escuro);
+  color: var(--branco);
+}
+
+/* ========================== */
+/* 💬 Caixa de diálogo inicial (saudação) */
+/* ========================== */
+.dialog-card {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: var(--preto);
+  border: 2px solid var(--rosa-claro);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.typing {
+  /* 📌 Fonte usada nas frases de saudação */
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.3rem;
+  color: var(--branco);
+  min-height: 3rem;
+}
+
+/* ========================== */
+/* ⭐ Perguntas centrais (botões tipo cabelo, sorriso...) */
+/* ========================== */
+.center-card {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.btn-interacao {
+  background: var(--rosa-claro);
+  border: none;
+  border-radius: 2rem;
+  padding: 0.8rem 1.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  color: var(--preto);
+}
+
+.btn-interacao:hover {
+  background: var(--rosa-escuro);
+  color: var(--branco);
+  box-shadow: 0 0 10px var(--rosa-claro);
+}
+
+
+/* ========================== */
+/* 🔘 Interruptor (chuva de palavrinhas ON/OFF) */
+/* ========================== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 10px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+/* Quando ativado */
+input:checked + .slider {
+  background-color: #ff4da6;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* ========================== */
+/* 🕹️ Efeito pulinho nos botões de pergunta */
+/* ========================== */
+@keyframes bounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.2); }
+  50%  { transform: scale(0.9); }
+  70%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.btn-interacao {
+  transition: transform 0.2s ease;
+}
+
+/* Classe aplicada via JS ao clicar */
+.bounce {
+  animation: bounce 0.4s ease;
+}
+
+/* ========================== */
+/* 🖼️ Galeria de "Coisas" e 📜 Cartinhas */
+/* ========================== *//* Container das cartas */
+.cartas-full {
+  display: flex;        /* Flex para respeitar tamanho do conteúdo */
+  flex-wrap: wrap;      /* Permite várias linhas */
+  gap: 1rem;            /* Espaço entre cartas */
+  padding: 1rem;
+}
+
+/* Cada carta */
+.carta-item {
+  flex: 0 0 auto;       /* Não cresce nem encolhe automaticamente */
+  max-width: 300px;     /* Limita largura da carta */
+  background-color: #ffb6d5;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  color: #fff;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: pre-line; /* Mantém quebras de linha do texto */
+}
+
+/* Hover */
+.carta-item:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Remove qualquer grid que podia quebrar */
+@media (min-width: 480px),
+       (min-width: 768px) {
+  .cartas-full {
+    display: flex !important; /* força flex, nada de grid */
+  }
+}
+
+
+/* ========================== */
+/* 📦 Modal (abre imagens, cartinhas etc.) */
+/* ========================== */
+.modal {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: var(--preto);
+  padding:1rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 90%;
+  color: var(--branco);
+}
+
+.hidden { display:none; }
+/* Galeria mais organizada */
+.galeria-full {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Card das coisas */
+.item-galeria {
+  background-color: #2c2c2c;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  color: #fff;
+  line-height: 1.4;
+  transition: transform 0.2s ease;
+}
+
+.item-galeria:hover {
+  transform: scale(1.03);
+}
+
+.item-galeria img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  object-fit: cover;
+}
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-item {
+  flex: 0 0 100%;
+  display: none; /* só aparece o ativo */
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 40px;
+  background: #111;
+  border-radius: 15px;
+  color: #fff;
+}
+
+.slide-item img {
+  max-width: 350px;
+  border-radius: 10px;
+}
+
+.slide-content {
+  flex: 1;
+}
+
+.slide-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.3em;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.music-player {
+  background-color: #2c2c2c;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 350px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.music-player img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.music-player .info h3 {
+  margin: 5px 0;
+  font-size: 1.2em;
+}
+
+.music-player .info p {
+  margin: 0 0 10px 0;
+  font-size: 0.9em;
+  color: var(--rosa-claro);
+}
+
+.music-player .controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.music-player #progress {
+  width: 100%;
+  cursor: pointer;
+  accent-color: var(--rosa-claro);
+}
+/* Container central */
+.cantadas-container {
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 400px;
+}
+
+/* Card único */
+.cantada-card {
+  background-color: #ffb6d5;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  color: #fff;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Título */
+.cantada-card h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+/* Imagem */
+.cantada-card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Botões */
+.cantada-botoes {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cantada-botoes button {
+  background-color: #ff69b4;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cantada-botoes button:hover {
+  background-color: #e0559f;
+}
+
+
+
+
+
+
+
+

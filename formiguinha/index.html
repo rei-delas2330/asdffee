@@ -1,0 +1,291 @@
+<!--
+  index.html
+  Site romântico responsivo (mobile-first) — versão adaptada
+  Matheus — Armandilho fez pra você. :)
+  Abra este arquivo no navegador (Chrome/Firefox/Safari)
+-->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pra Tu — Surpresinhas</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<!-- Fonte redondinha global -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="styles.css">
+
+  
+  <style>
+    body {
+      margin: 0;
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+
+    /* Fundo estrelado */
+    .sky {
+      position: fixed;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Tabs */
+    .tab-btn { cursor: pointer; padding: 10px 15px; background: #333; color: #fff; border: none; margin-right: 5px; border-radius: 5px; }
+    .tab-btn.active { background: #ff69b4; }
+
+    .tab-panel { padding: 20px; }
+    .hidden { display: none; }
+
+    /* Cartinhas estilizadas */
+    .carta-item {
+      background-color: #ffb6d5;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      color: #fff;
+      line-height: 1.5;
+      transition: transform 0.2s ease;
+      max-width: 600px;
+      word-wrap: break-word;
+    }
+
+    .carta-item:hover {
+      transform: scale(1.03);
+    }
+
+    /* Botões e cards centrais */
+    .btn { cursor: pointer; padding: 8px 12px; border: none; border-radius: 8px; background-color: #ff69b4; color: #fff; margin: 5px; }
+    .btn-primary { background-color: #ff1493; }
+
+    .center-card { text-align: center; margin: 20px 0; }
+    .interaction-buttons button { margin: 5px; }
+
+    /* Formulários */
+    .form-crud label { display: block; margin-bottom: 10px; }
+    .form-crud input, .form-crud textarea, .form-crud select { width: 100%; padding: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    .form-actions { margin-top: 10px; }
+  </style>
+
+  <!-- Meta description -->
+  <meta name="description" content="Site romântico com galeria, cartinhas e interações - front-end only.">
+</head>
+<body>
+  <!-- App wrapper -->
+  <div id="app" class="app">
+
+    <!-- Fundo estrelado / cenário -->
+    <div id="sky" class="sky" aria-hidden="true"></div>
+
+    <!-- Top navigation: abas -->
+    <header class="topbar" role="banner">
+      <div class="brand">
+        <h1 class="site-title" aria-hidden="true">Pra Formiguinha🐜💖</h1>
+      </div>
+
+      <!-- Tabs -->
+      <nav class="tabs" role="navigation" aria-label="Navegação principal">
+        <button class="tab-btn active" data-tab="home" aria-label="Home">Home</button>
+        <button class="tab-btn" data-tab="coisas" aria-label="Coisas que me lembram tu">Coisas</button>
+        <button class="tab-btn" data-tab="cartinhas" aria-label="Cartinhas de amor">Cartinhas</button>
+<a href="baitola/index.html" class="tab-btn" aria-label="Declaração">Declaração🐜</a>
+
+      </nav>
+    </header>
+
+
+    <!-- Main content -->
+    <main id="main" class="main" role="main">
+
+      <!-- Home / Saudação -->
+      <section id="tab-home" class="tab-panel active" aria-labelledby="home">
+        <!-- Saudações tipo typewriter -->
+        <div id="app-saudacao" class="saudacao" role="region" aria-live="polite">
+          <div class="dialog-card" id="dialog-card">
+            <p id="typing-text" class="typing" aria-atomic="true"></p>
+            <div class="dialog-actions">
+              <button id="btn-continuar" class="btn btn-primary" aria-label="Continuar">Continuar</button>
+            </div>
+          </div>
+        </div>
+<!-- Interruptor para chuva de palavrinhas -->
+<label class="switch">
+  <input type="checkbox" id="btn-chuva">
+  <span class="slider">
+    <br>
+    <br>    
+    Ativar chuva</span>
+</label>
+
+<!-- Card central com pergunta - Cabelo -->
+<section class="center-card" aria-label="Interações principais">
+  <div class="center-inner">
+    <div class="interaction-buttons">
+      <button class="btn-interacao" id="btn-cabelo" aria-label="O que eu acho do seu cabelo?">
+        O que eu acho do seu cabelo?
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Card central com pergunta - Sorriso -->
+<section class="center-card" aria-label="Interações principais">
+  <div class="center-inner">
+    <div class="interaction-buttons">
+      <button class="btn-interacao" id="btn-sorriso" aria-label="O que eu acho do seu sorriso">
+        Seu sorriso
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Card central com pergunta - Corpo -->
+<section class="center-card" aria-label="Interações principais">
+  <div class="center-inner">
+    <div class="interaction-buttons">
+      <button class="btn-interacao" id="btn-corpo" aria-label="O que eu acho do seu corpo?">
+        E do seu corpo?
+      </button>
+    </div>
+  </div>
+</section>
+      </section>
+
+      
+
+      <!-- Coisas que me lembram tu -->
+      <section id="tab-coisas" class="tab-panel hidden">
+        <div class="full-header">
+          <h2>Coisas que me lembram tu </h2>
+          <button id="new-coisa" class="btn" aria-label="Adicionar nova coisa">+ Nova coisa</button>
+        </div>
+        <form id="form-coisa" class="form-crud hidden" aria-hidden="true">
+          <label>Título
+            <input id="coisa-titulo" required placeholder="Ex: Seu sorriso">
+          </label>
+          <label>Descrição
+            <textarea id="coisa-texto" required placeholder="Por que isso me lembra você..."></textarea>
+          </label>
+          <label>Imagem (PNG/JPG/WEBP)
+            <input id="coisa-imagem" type="file" accept="image/*">
+          </label>
+          <div class="form-actions">
+            <button id="save-coisa" class="btn btn-primary">Salvar</button>
+            <button id="cancel-coisa" class="btn">Cancelar</button>
+          </div>
+        </form>
+<div class="carousel">
+  <button class="prev">&#10094;</button>
+  <div id="galeria-full" class="slides"></div>
+  <button class="next">&#10095;</button>
+</div>
+
+
+      <!-- Cartinhas de amor --><section id="tab-cartinhas" class="tab-panel">
+        <div class="full-header">
+          <h2>Cartinhas de amor</h2>
+        </div>
+
+        <div id="cartas-full" class="cartas-full"><div class="carta-item" style="background-color: rgb(62, 25, 25);"><h3>Carta que fiz quando tu ia viajar 💖</h3><p>Formiguinha,
+
+To escrevendo essa carta pra tu lembrar um pouco de mim na viagem. Já q fico pensando em ti 24 hrs, nada mais justo né?
+
+Tu ta confusa sobre tudo, e tem medo de me machucar, mas te lembra q tu ja me deu mil e um motivos pra nem olhar mas na tua cara, so peço q tu confie em mim sabe? Prometo que vai ficar tudo bem.
+
+Isso de nn desisti de ti talvez seja minha teimosia,talvez seja obsessão, talvez seja pq nn quero jogar essa ilusão da minha cabeça fora...nem eu mesmo entendo tudo isso sabe?
+
+Esse desejo de te ter pra mim.... de sentir teu abraço, escutar tua risada, passar horas escutando tua voz, sentir o calor do teu corpo, me perder no brilho do teu olhar, sentir tua respiração na minha....Eu poderia passar horas falando as coisas que desejo em ti.
+
+Sempre q vou falar ctg, fico muito nervoso,medo de mulher bonita sabe? Quando nn é isso pessoal faz fila pra falar ctg, acaba atrapalhando tudo,acho q isso impediu de eu ter mais memórias ctg,q nn fossem só na minha cabeça.
+ 
+Eu não queria deixar essa carta tão... baitola, mas é difícil ficar normal quando fico pensando em ti, não me guentei, as vezes me perco em longos devaneios, pra tentar suprir oq sinto por ti. Vou ficar com saudades esse tempo, espero q os dias passem rapidos.
+
+E eu sempre vou te amar e te querer pra mim
+
+Matheus</p></div></div>
+
+        <div class="carta-item" style="background-color: rgb(46, 0, 19);"><h3>Primeira cartinha que fiz 💕</h3><p>Esla,
+
+Quero começar dizendo que me arrependo de não fazer isso antes, e falar eu mesmo oq eu sinto, e ter perdido todo esse tempo. Já deve saber que sempre te achei bonita e diferente, desda primeira vez q ti vi,mas meu olhar foi além, e vi a garota boba, engraçada e legal q é. E percebi q amo isso em ti, amo teu cabelo, amo, teu olhar e amo teu sorriso q sempre me deixa bobo. Espero q goste desses bombons que nem se comparam com o docinho q tu é.
+Com carinho e humilhação, Matheus rei delas</p></div>
+        <div class="carta-item" style="background-color: #704c64;">
+          <h3>Teus detalhes perfeitos 💖</h3>
+          <p>
+            Queria que tu te olhasses com os meus olhos,
+            ao menos uma vez,
+            pra ver o quão bela tu és...<br><br>
+            Tu ainda não sabes,
+            mas, toda vez que te vejo,
+            me perco em cada detalhe 
+            dos mais chamativos aos mais discretos.<br><br>
+            Todo detalhe teu...
+            O jeito bobo com que andas,
+            a forma como te vestes
+            o brilho do teu olhar serrado,
+            teus lábios delicados e convidativos,
+            acompanhados do teu sorriso invertido...<br><br>
+            E quando sinto teu toque,
+            faz minha mente ir ao longe...
+            Almejando sentir cada traço teu.<br><br>
+            Teu corpo moldado,
+            Que parece até que foi esculpido,
+            Tuas belas curvas que queria capotar em cada uma delas<br><br>
+            Mas nunca vou dizer isso diretamente a ti.
+            Pois fico feito um cachorro medroso quando esta perto.<br><br>
+            Ainda assim, desejo.
+            Imagino nós dois nos perdendo no toque um do outro,
+            o hálito quente se encontrando,
+            palavras tolas sendo trocadas...<br><br>
+            Mas, mais do que tudo,
+            te tendo 
+            enfim 
+            pra mim.
+          </p>
+        </div>
+        <div class="carta-item" style="background-color: rgb(39, 41, 119);"><h3>Mensagem de anivrsario de 2024 ✨</h3><p>Eslinha🦧,
+Tu não deve saber,mas te acho uma garota muito incrível,faz amizade com td mundo q vê pela frente,parece até uma vereadora,teu mundo parece ser mais alegre,cheio de risadas e cores(igual teu cabelo)sempre reparo quando tu pinta o cabelo ou coisa do tipo,cada mês e ano q passa tu fica mais deslumbrante💫. Eu seriamente queria ser mais próximo de ti mas pelas situações não muito legais q nós dois passamos, acho melhor continuar assim, mas fique sabendo q nunca te desejei mal ou coisa do tipo,afinal de contas tenho crtz q tu tem um grande futuro pela frente.
+Enfim parabéns Esla agr pode ser presa, muitos anos de vida e sucessos</p></div>
+
+<div class="carta-item" style="background-color: rgb(5, 36, 10);"><h3>Mensagem de aniversario desse ano 💖</h3><p>Senhora Eslinha,
+
+Feliz aniversario pra tu, sei q foi triste esse final de escola, nem quis por o pé na formatura so pra não te ver ou lembrar de tudo oq aconteceu, ja q eu real fiquei mal, não por tu ta namorando, mas com tudo oq aconteceu em si. A gente nem se despediu direito até hj me doi a ultima vez q te vi e quando a chama de esperança q eu tinha apagou.
+
+
+Eu só quero te desejar todo sucesso e felicidade do mundo, e que tu arrume alguem q te veja com os olhos q te vejo, mesmo tu sendo mo babaca e toda errada cmg eu ainda te amava. Infelizmente não vou poder descrver com palavras a forma que eu te vejo. Algo q beira a brisa alegre da praia e q raridade e delicadeza de uma tulipa.
+
+Eu sei q alguem deve ter dito q parecia que eu tava desesperado, por mais q eu real tava, e espero q não tenha se sentindo bem com isso ou inflado teu ego. Mas é que sabia q tu ia embora, so queria ao menos deixar marcado pra mim, não ia ser meu primeiro beijo, mas ia ser o primeiro de alguem q eu realmente gostava e tinha me esforçado pra acontecer. Ia ser espeical
+
+Tua lerdeza pode não deixar tu se lembrar, mas me deve ter me visto mudar varias vezes durante esse tempo como todo, varias fases e acho q essa não era a certa pra eu mandar um declaração da forma mais idiota possivel. Ou talvez eu so tenha tomado iniciativa na hora errada, talvez eu so tenha sido menos atrante doque outros q tu ja ficou, talvez eu so ficava com tanto medo de tu me julgar ou me olhar torto q nem me conheceu como sou.
+
+Não queria q tudo acabasse assim, eu real me esforcei, eu te amava de vdd, mas pq eu fui tão longe assim? Fiz coisas q prometi q nunca ia fazer por ninguem, mas agora tudo não passa de historias e lembranças q vão me pertubar toda vez q pensar ou ouvir teu nome.
+
+Mas sempre vou guarda aql dia da gincana q foi magico pra mim, eu tava vivendo quase tudo oq queira ter vivido ctg...so q no dia seguinte foi dia 15 dezembro.
+      </p></div></section>
+
+    <!-- Modal geral -->
+    <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button id="modal-close" class="modal-close" aria-label="Fechar modal">✕</button>
+        <div id="modal-body" class="modal-body"></div>
+      </div>
+    </div>
+
+  </div>
+  
+
+  <!-- Scripts -->
+  <script src="scripts.js" defer></script>
+</body>
+</html>
