@@ -332,10 +332,6 @@ const cartasFull = document.getElementById("cartas-full");
 const btnSaveCarta = document.getElementById("save-carta");
 const btnCancelCarta = document.getElementById("cancel-carta");
 
-btnNewCarta.addEventListener("click", () => {
-  formCarta.classList.remove("hidden");
-  formCarta.setAttribute("aria-hidden", "false");
-});
 
 btnCancelCarta.addEventListener("click", (e) => {
   e.preventDefault();
@@ -394,6 +390,7 @@ function mudarCantada(direcao) {
 
 // Mostra a primeira cantada ao carregar
 window.onload = mostrarCantada;
+
 
 
 
